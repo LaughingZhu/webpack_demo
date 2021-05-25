@@ -3,13 +3,17 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-25 17:52:13
  * @LastEditros: 
- * @LastEditTime: 2021-05-25 18:39:31
+ * @LastEditTime: 2021-05-25 22:22:58
  */
 
 'use strict';
 
 const path = require('path')
-console.log(__dirname)
+const toml = require('toml')
+const yaml = require('yamljs')
+const json5 = require('json5')
+
+
 module.exports = {
   entry: './src/index.js',
 
@@ -28,6 +32,31 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gih)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.toml$/i,
+        type: 'json',
+        parser: {
+          parse: toml.parse
+        }
+      },
+      {
+        test: /\.yaml$/i,
+        type: 'json',
+        parser: {
+          parse: yaml.parse
+        }
+      },
+      {
+        test: /\.json5$/i,
+        type: 'json',
+        parser: {
+          parse: json5.parse
+        }
       }
     ]
   }
