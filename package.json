@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "style-loader": "^2.0.0",
     "toml": "^3.0.0",
     "webpack": "^5.37.1",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2",
     "yamljs": "^0.3.0"
