@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-25 17:52:13
  * @LastEditros: 
- * @LastEditTime: 2021-05-25 23:05:51
+ * @LastEditTime: 2021-05-25 23:20:51
  */
 
 'use strict';
@@ -28,11 +28,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: '管理输出'
+      title: 'Development',
     })
   ],
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist'
+  },
 
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
       {
