@@ -3,23 +3,29 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-25 17:46:33
  * @LastEditros: 
- * @LastEditTime: 2021-05-25 22:56:54
+ * @LastEditTime: 2021-05-26 15:08:39
  */
 import _ from 'lodash'
-import printMe from './print'
+import numRef from './ref.json';
 
-function component () {
-  const element = document.createElement('div');
-  element.innerHTML = _.join(['hello', 'webpack'], ' ');
 
-  const btn = document.createElement('button');
 
-  btn.innerHTML = 'Click me and check the console'
-  btn.onclick = printMe;
-
-  element.appendChild(btn)
-
-  return element;
+export function numToWord(num) {
+  return _.reduce(
+    numRef,
+    (accum, ref) => {
+      return ref.num === num ? ref.word : accum;
+    },
+    ''
+  );
 }
 
-document.body.appendChild(component())
+export function wordToNum(word) {
+  return _.reduce(
+    numRef,
+    (accum, ref) => {
+      return ref.word === word && word.toLowerCase() ? ref.num : accum;
+    },
+    -1
+  );
+}

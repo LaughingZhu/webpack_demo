@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-25 17:52:13
  * @LastEditros: 
- * @LastEditTime: 2021-05-26 00:15:52
+ * @LastEditTime: 2021-05-26 15:22:03
  */
 
 'use strict';
@@ -23,12 +23,16 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
+    library: {
+      name: "webpackNumbers",
+      type: 'umd'
+    },
     clean: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Development',
+      title: 'Caching',
     }),
     // new BundleAnalyzerPlugin(
     //   {
@@ -89,8 +93,19 @@ module.exports = {
     ]
   },
   optimization: {
+    // splitChunks: {
+    //   chunks: 'all',
+    // },
+    runtimeChunk: 'single',
+    moduleIds : 'deterministic',
     splitChunks: {
-      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
   },
 }
